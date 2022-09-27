@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:front/screens/home/home_page.dart';
+import 'package:front/screens/home_page/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
