@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
+import 'package:front/models/product.dart';
+
 class SearchHere extends StatelessWidget {
   const SearchHere({
     Key? key,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: ((value) => Product.filterList(value)),
       decoration: InputDecoration(
         hintText: 'Search here ...',
         hintStyle: const TextStyle(
@@ -33,6 +37,14 @@ class SearchHere extends StatelessWidget {
         ),
         contentPadding: const EdgeInsets.only(top: 15,bottom: 15)
       ),
+
+      /* onSubmitted: (value) {
+        Navigator.push(context, MaterialPageRoute<void>(
+          builder: (BuildContext context) => const SearchResult(),));
+
+
+      }, */
+      
     );
   }
 }

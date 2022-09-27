@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class RecentProductslist extends StatelessWidget {
-  const RecentProductslist({
+class HorizontalScroll extends StatelessWidget {
+  const HorizontalScroll({
     Key? key,
     required this.list,
     required this.height,
   }) : super(key: key);
 
-  final List<Widget> list;
+  final RxList<Widget> list;
   final double height;
 
   @override
@@ -23,6 +24,7 @@ class RecentProductslist extends StatelessWidget {
         padding: const EdgeInsets.only(top: 6),
         child: ListView(
           scrollDirection: Axis.horizontal,
+          
           children: list,
         ),
       ),

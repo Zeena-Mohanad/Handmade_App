@@ -5,16 +5,23 @@ import 'package:front/screens/home/app_bar_title.dart';
 import 'package:front/screens/home/category.dart';
 import 'package:front/screens/home/flash_deals_view.dart';
 import 'package:front/screens/home/product_view.dart';
-import 'package:front/screens/home/products_Title.dart';
+import 'package:front/screens/home/products_title.dart';
 import 'package:front/screens/home/horizontal_scroll.dart';
 import 'package:front/screens/home/sale_template.dart';
 import 'package:front/screens/home/search_here.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const AppBarTitle(),
@@ -23,20 +30,24 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20,right: 20),
         child: ListView(
           children: [
-            const SearchHere(),
+            SearchHere(),
 
             const SaleTemplate(),
             
-            HorizontalScroll(list: Categories.categories.map((e) => Category(icon: e.icon, color: e.color)).toList(), height: 70,),
+            HorizontalScroll(list: Categories.categories.map((e) => Category(icon: e.icon, color: e.color)).toList().obs, height: 70,),
 
             const ProductsTitle(title: 'Recent Products',),
 
-            HorizontalScroll(list: Product.products.map((e) => ProductView(productName: e.productName, oldPrice: e.oldPrice, newPrice: e.newPrice, image: e.image)).toList(),
-             height: 207,),
+            Obx(
+              () {
+                return HorizontalScroll(list: Product.foundProduct.map((e) => ProductView(productName: e.productName, oldPrice: e.oldPrice, newPrice: e.newPrice, image: e.image)).toList().obs,
+                 height: 207,);
+              }
+            ),
 
             const ProductsTitle(title: 'Flash Deals',),
             
-            HorizontalScroll(list: Product.products.map((e) => FlashDealsView(productName: e.productName, oldPrice: e.oldPrice, newPrice: e.newPrice, image: e.image)).toList(),
+            HorizontalScroll(list: Product.products.map((e) => FlashDealsView(productName: e.productName, oldPrice: e.oldPrice, newPrice: e.newPrice, image: e.image)).toList().obs,
              height: 107,),
           ],
         ),
