@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:front/navBar.dart';
 import 'package:front/screens/home_page/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ()=>Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder:
                                                           (context) => 
-                                                          const HomePage()
+                                                           NavBar()
                                                          )
                                        )
          );

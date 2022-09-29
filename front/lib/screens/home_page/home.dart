@@ -7,6 +7,7 @@ import 'package:front/screens/home_page/offers.dart';
 import 'package:front/screens/home_page/product_title.dart';
 import 'package:front/screens/home_page/product_view.dart';
 import 'package:front/screens/home_page/search_field.dart';
+import 'package:get/get.dart';
 
 import 'catergory.dart';
 import 'flash_deals.dart';
@@ -39,11 +40,15 @@ class _HomePageState extends State<HomePage> {
 
             const ProductsTitle(title: 'Recent Products',),
 
-            HorizontalScroll(
-              list: Product.products.map((e) => ProductView(
-                  productName: e.productName, oldPrice: e.oldPrice,
-                  newPrice: e.newPrice, image: e.image, description: e.description,)).toList(),
-              height: 207,),
+            Obx(
+             () {
+                return HorizontalScroll(
+                  list: Product.foundProduct.map((e) => ProductView(
+                      productName: e.productName, oldPrice: e.oldPrice,
+                      newPrice: e.newPrice, image: e.image, description: e.description,)).toList(),
+                  height: 207,);
+              }
+            ),
 
             const ProductsTitle(title: 'Flash Deals',),
 

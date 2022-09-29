@@ -36,7 +36,7 @@ class DetailsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
 
           ProductImage(image: image,),

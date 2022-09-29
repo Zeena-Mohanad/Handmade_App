@@ -10,7 +10,6 @@ class CheckOutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 170,
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -26,7 +25,7 @@ class CheckOutCard extends StatelessWidget {
           )
         ],
       ),
-      child: const CheckOutItems(),
+      child: CheckOutItems(),
     );
   }
 }

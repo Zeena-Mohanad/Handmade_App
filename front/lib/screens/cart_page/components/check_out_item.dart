@@ -1,9 +1,19 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class CheckOutItems extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:whatsapp/whatsapp.dart';
+
+class CheckOutItems extends StatefulWidget {
   const CheckOutItems({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CheckOutItems> createState() => _CheckOutItemsState();
+}
+
+class _CheckOutItemsState extends State<CheckOutItems> {
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +63,9 @@ class CheckOutItems extends StatelessWidget {
 
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                    _openWhatsAppChat();
+                    },
                   ),
                 ),
               ),
@@ -64,3 +76,26 @@ class CheckOutItems extends StatelessWidget {
     );
   }
 }
+
+ void _openWhatsAppChat()async{
+  String phoneNumber = '+96446567693';
+  var whatsappUrlIos = Uri.parse('https://wa.me/$phoneNumber?text=HelloWorld');
+  var whatsappUrlAndroid = Uri.parse('whatsapp://send?phone=$phoneNumber?text=HelloWorld');
+
+  if(Platform.isIOS){
+    if(await canLaunchUrl(whatsappUrlIos)){
+      await launchUrl(whatsappUrlIos);
+    } else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Whatsapp not installed')));
+    } 
+  }else{
+    if(await canLaunchUrl(whatsappUrlAndroid)){
+      await launchUrl(whatsappUrlAndroid);
+    } else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Whatsapp not installed')));
+    } 
+  }
+  
+} 
